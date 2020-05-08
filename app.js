@@ -1,37 +1,30 @@
- 
-const Event = require('events');
-
-const eventManager = new Event;
-
-//Simple working with events
-eventManager.on('shout', () => {
-    console.log('Why you are shouting, I am not deaf');
+const readline = require('readline');
+const rlInterface = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
 });
 
-eventManager.emit('shout');
+rlInterface.on('close', ()=>{
+    console.log('Jackpot!!');
+});
 
-//Extending class
-class ErrorHandler extends Event {
-    constructor() {
-        super();
-    }
+let operand1 = Math.floor((Math.random() * 10) + 1);
+let operand2 = Math.floor((Math.random() * 10) + 1);
+let answer = operand1 + operand2;
 
-    get errorCodes() {
-        return {
-            700: 'Age out of the bounds',
-            701: 'Age out of the bounds',
-            701: 'Income details do not match',
+rlInterface.question(`What will be sum of ${operand1} and ${operand2}?\n`, (userInput) => {
+
+    const checkAnswer = (input)=>{
+        if (input.trim() == answer) {
+            rlInterface.close();
+        } else {
+            rlInterface.setPrompt(`OOPS!!, Try Again\n`);
+            rlInterface.prompt();
+            rlInterface.on('line', (lineUserInput)=>{
+                checkAnswer(lineUserInput);
+            });
         }
     }
-}
-
-const errors = new ErrorHandler;
-errors.on('700', () => {
-    console.log(errors.errorCodes[700]);
-});
-errors.on('701', () => {
-    console.log(errors.errorCodes[701]);
+    checkAnswer(userInput);
 });
 
-errors.emit('700');
-errors.emit('701');
