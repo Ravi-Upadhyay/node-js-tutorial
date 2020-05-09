@@ -2,7 +2,7 @@
 
 A quick go through the concepts of node js as a crash course to again start journey of deep exploration :)
 
->For more elaborate explaination kindly visit wiki of this repository: [Repository Wiki](https://github.com/Ravi-Upadhyay/node-js-crash-course/wiki/Home.md)
+>For more elaborate explaination kindly visit wiki of this repository: [Repository Wiki](https://github.com/Ravi-Upadhyay/node-js-crash-course/wiki)
 ___
 
 ## Index
