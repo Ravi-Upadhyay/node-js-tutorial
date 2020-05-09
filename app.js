@@ -4,8 +4,8 @@
 const fs = require('fs');
 const zlib = require('zlib');
 
-const readStream = fs.createReadStream('file-to-read.txt', 'utf8');
-const writeStream = fs.createWriteStream('file-to-read.txt.gz');
-const gZip = zlib.createGzip();
+const readStream = fs.createReadStream('file-to-read.txt.gz');
+const writeStream = fs.createWriteStream('file-to-read-uncompressed.txt');
+const gUnzip = zlib.createGunzip();
 
-readStream.pipe(gZip).pipe(writeStream);
+readStream.pipe(gUnzip).pipe(writeStream);
