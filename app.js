@@ -20,3 +20,8 @@ fs.readFile('./file-to-read.txt', (err, file)=> {
         console.log(file);
     }
 });
+
+/* 6.3. using pipe method */
+const readThroughPipe = fs.createReadStream('file-to-read.txt', 'utf8');
+const writeThroughPipe = fs.createWriteStream('file-to-write.txt');
+readThroughPipe.pipe(writeThroughPipe);
