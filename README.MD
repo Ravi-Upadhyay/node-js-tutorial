@@ -20,7 +20,9 @@ Different tutorials commit by commit. See below for the learnings
 - The Event Module and EventEmitter Class - commit(#4c17d09)
 - Working with readline module - commit(#128ead4)
 - Working with file system module
-    - Write and Read a file - commit()
+    - Write and Read a file - commit(#0f0359)
+    - Rename, Delete, Append a file - commit(#91c856)
+- Working with file system module, directories
 ___
 
 ## Learnings<a name="learnings"></a>
@@ -43,7 +45,10 @@ ___
         - `appendFile('fileName', 'fileContent', callback')`. Used to add/append content to the file.
         - `rename('oldName', 'newName', 'callback')`. Used to rename existing file.
         - `unlink('fileName', 'callback')`. Used to delete the file.
-
+    - To work with directories there are some useful methods
+        - `mkdir('dirName', 'callback')`. Used to create/make directories.
+        - `rmdir('dirName', 'callback')`. Used to remove/delete directories.
+        - `readdir('dirName', 'callback')`. Used to read the directories. It will return an array of the files existing into the given directory. 
 ___
 
 ## Resources Over Web<a name="resources"></a>

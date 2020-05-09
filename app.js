@@ -1,18 +1,37 @@
-/* Chapter 4 - File system module */
-/* 4.1. Read and Write the file */
+/* Chapter 5 - File system module, working with directories */
+/* 5.1. make and remove directories */
+/* 5.2. empty directories before deleting */
 const fs = require('fs');
 
-fs.writeFile('node-example.txt', 'This is an example, creating the file with the help of node js', (error) => {
-    if(error) console.log(error);
+fs.mkdir('node-experiment', (err) => {
+    if(err) console.log(err);
     else {
-        console.log('file successfully created');
-        fs.readFile('node-example.txt', 'utf8', (error, file) => {
-            if(error) {
-                console.log(error);
-            } else {
-                console.log(file);
+        console.log('Directory Created Sucessfully');
+        
+        fs.writeFile('./node-experiment/experiment-file.txt', 'This is an experiment', (err) => {
+            if(err) console.log(err);
+            else {
+                console.log('file has been created sucessfully, ./node-experiment/experiment-file.txt');
+
+                fs.readdir('./node-experiment', (err, files) => {
+                    if (err) console.log(err);
+                    else {
+                        console.log('./node-experiment contains files: ', files);
+                        if(files.length) {
+                            for(let file of files) {
+                                fs.unlink(`./node-experiment/${file}`, (err) => {
+                                    if(err) console.log(err);
+                                    else console.log(`file deleted form ./node-experiment: ${file}`);
+                                });
+                            }
+                        }
+                        fs.rmdir('node-experiment', (err) => {
+                            if(err) console.log(err);
+                            else console.log('Directory Deleted Successfully');
+                        });
+                    }
+                });
             }
         });
     }
 });
-
