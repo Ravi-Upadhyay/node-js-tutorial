@@ -1,11 +1,11 @@
-/* Chapter 7 - Working with zlib module used for compression or decompression */
-/* 7.1. Working with compression */
+/* Chapter 8 - Working with http server */
+/* 8.1 - Bare Minimum configuration to run a server */
+const http = require('http');
 
-const fs = require('fs');
-const zlib = require('zlib');
+const server = http.createServer((req, res) => {
+  res.write('Voila! Http Server is up and running');
+  res.end();
+});
 
-const readStream = fs.createReadStream('file-to-read.txt.gz');
-const writeStream = fs.createWriteStream('file-to-read-uncompressed.txt');
-const gUnzip = zlib.createGunzip();
-
-readStream.pipe(gUnzip).pipe(writeStream);
+server.listen('8080');
+console.log('Http Server is up and running at: localhost:8080');
