@@ -1,30 +1,18 @@
-const readline = require('readline');
-const rlInterface = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
+/* Chapter 4 - File system module */
+/* 4.1. Read and Write the file */
+const fs = require('fs');
 
-rlInterface.on('close', ()=>{
-    console.log('Jackpot!!');
-});
-
-let operand1 = Math.floor((Math.random() * 10) + 1);
-let operand2 = Math.floor((Math.random() * 10) + 1);
-let answer = operand1 + operand2;
-
-rlInterface.question(`What will be sum of ${operand1} and ${operand2}?\n`, (userInput) => {
-
-    const checkAnswer = (input)=>{
-        if (input.trim() == answer) {
-            rlInterface.close();
-        } else {
-            rlInterface.setPrompt(`OOPS!!, Try Again\n`);
-            rlInterface.prompt();
-            rlInterface.on('line', (lineUserInput)=>{
-                checkAnswer(lineUserInput);
-            });
-        }
+fs.writeFile('node-example.txt', 'This is an example, creating the file with the help of node js', (error) => {
+    if(error) console.log(error);
+    else {
+        console.log('file successfully created');
+        fs.readFile('node-example.txt', 'utf8', (error, file) => {
+            if(error) {
+                console.log(error);
+            } else {
+                console.log(file);
+            }
+        });
     }
-    checkAnswer(userInput);
 });
 

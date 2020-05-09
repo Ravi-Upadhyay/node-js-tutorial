@@ -18,7 +18,9 @@ Different tutorials commit by commit. See below for the learnings
 
 - Node Modules - commit(#8d864f)
 - The Event Module and EventEmitter Class - commit(#4c17d09)
-- Working with readline module - commit()
+- Working with readline module - commit(#128ead4)
+- Working with file system module
+    - Write and Read a file - commit()
 ___
 
 ## Learnings<a name="learnings"></a>
@@ -27,12 +29,14 @@ ___
     - ES6 modules, imports and exports are not supported in node yet.
 - Events:
     - Node has `event` module built in that can be imported by `require('event')`. Which will you give a class that can be used to create objects
-    - `.on()` and `.emit()` methods of that class can be used after creating object. 
+    - `on()` and `emit()` methods of that class can be used after creating object.
 - Readline
     - Node has `readline` module built in. To start work with that one need to use `createInterface()` method which takes an object as input. That object tells about configuration (input/output).
     - `readline Interface` has method `question()` to ask/prompt user question. Second parameter of which is callback function.
     - `readline Interface` has a way to prompt user and then get the output. `setPrompt()` is used to set the prompt message. Then we have `prompt()` method to show the prompt.
-    - `readline Interface` has an event emitter associated, `.on('line')` which can help you take input from the user in response of the prompt. 
+    - `readline Interface` has an event emitter associated, `on('line')` which can help you take input from the user in response of the prompt.
+- FileSystem
+    - Node has `fs` module built in. it has some useful methods to work with file such as `writeFile('_fileName_', '_fileContent_', '_callback_')`, `readFile('_fileName_', '_encoding_', '_callback_')`.
 
 ___
 
