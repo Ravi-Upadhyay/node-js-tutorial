@@ -1,27 +1,11 @@
-/* Chapter 6 - Read and Write the Streams  */
-/* 6.1. ReadStream and WriteStream */
+/* Chapter 7 - Working with zlib module used for compression or decompression */
+/* 7.1. Working with compression */
+
 const fs = require('fs');
-let counter = 1;
-const readStream = fs.createReadStream('./file-to-read.txt', 'utf8');
-const writeStream = fs.createWriteStream('./file-to-write.txt');
+const zlib = require('zlib');
 
-readStream.on('data', (stream)=> {
-    console.log(`readStream has read stream: ${counter}: `, stream);
-    counter++;
-    writeStream.write(stream);
-});
+const readStream = fs.createReadStream('file-to-read.txt', 'utf8');
+const writeStream = fs.createWriteStream('file-to-read.txt.gz');
+const gZip = zlib.createGzip();
 
-/* 6.2. ReadFile without stream */
-fs.readFile('./file-to-read.txt', (err, file)=> {
-    console.log('readFile method: ');
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(file);
-    }
-});
-
-/* 6.3. using pipe method */
-const readThroughPipe = fs.createReadStream('file-to-read.txt', 'utf8');
-const writeThroughPipe = fs.createWriteStream('file-to-write.txt');
-readThroughPipe.pipe(writeThroughPipe);
+readStream.pipe(gZip).pipe(writeStream);

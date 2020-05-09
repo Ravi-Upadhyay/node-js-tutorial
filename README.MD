@@ -55,7 +55,9 @@ ___
         - read complete file using `fs.readFile('fileName', callback)`.
         - read chunk/stream `fs.createReadStream('fileName', 'encoding')` gives you `readStream` which by default emits `data` event. One can access data stream by listening to this event. 
     - To open write stream one can have `writeStream` by using `fs.createWriteStream('fileName')`. Which gives access to the `write()` method.
-    - Reading big files is possible if we read them in streams/chunks `readFile()` might be not able to read due to `buffer size` limitation. 
+    - Reading big files is possible if we read them in streams/chunks `readFile()` might be not able to read due to `buffer size` limitation.
+- Compression and Decompression
+    - Node has `zlib` module built in. It can be used to either compress or decompress. `zlib` uses `createGzip()` method to provide interface that can be used with `pipe()`. Similarily `createGunzip()` method is used to provide interface that can used to decompress.
 ___
 
 ## Resources Over Web<a name="resources"></a>
